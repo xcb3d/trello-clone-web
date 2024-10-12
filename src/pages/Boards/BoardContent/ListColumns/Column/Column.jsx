@@ -23,6 +23,7 @@ import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 
 function Column({ column }) {
+  
   const [anchorEl, setAnchorEl] = useState(null)
   const open = Boolean(anchorEl)
   const handleClick = (event) => {
@@ -47,6 +48,7 @@ function Column({ column }) {
   }
 
   return (
+    
     <div ref={setNodeRef} style={dndKitColumnStyles} {...attributes} >
       <Box
         {...listeners}
