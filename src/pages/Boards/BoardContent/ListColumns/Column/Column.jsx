@@ -41,17 +41,16 @@ function Column({ column }) {
   })
   const dndKitColumnStyles = {
     // touchAction: 'none',
-    transform: CSS.Transform.toString(transform),
+    transform: CSS.Translate.toString(transform),
     transition,
-    height: '100',
+    height: '100vh',
     opacity: isDragging ? 0.5 : undefined
   }
 
   return (
-    
-    <div ref={setNodeRef} style={dndKitColumnStyles} {...attributes} >
+    <div  ref={setNodeRef} style={dndKitColumnStyles} {...attributes}>
       <Box
-        {...listeners}
+        {...listeners} 
         sx={{
           minWidth: '300px',
           maxWidth: '300px',
@@ -163,7 +162,7 @@ function Column({ column }) {
           </Tooltip>
         </Box>
       </Box>
-    </div>
+     </div>
   )
 }
 
