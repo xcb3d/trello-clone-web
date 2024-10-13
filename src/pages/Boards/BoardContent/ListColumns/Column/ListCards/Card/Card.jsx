@@ -2,7 +2,7 @@ import AttachmentIcon from '@mui/icons-material/Attachment'
 import GroupIcon from '@mui/icons-material/Group'
 import ModeCommentIcon from '@mui/icons-material/ModeComment'
 import Button from '@mui/material/Button'
-import { Box, Card as MuiCard } from '@mui/material'
+import { Card as MuiCard } from '@mui/material'
 import CardActions from '@mui/material/CardActions'
 import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
@@ -46,7 +46,9 @@ function Card({ card }) {
       sx={{
         cursor: 'pointer',
         boxShadow: '0 1px 1px rgba(0,0,0,0.2)',
-        overflow: 'unset'
+        overflow: 'unset',
+        display: card.FE_PlaceholderCard ? 'none' : 'block'
+        // height: card.FE_PlaceholderCard ? '0px' : '100%'
       }}
     >
       {card?.cover && (
