@@ -1,3 +1,4 @@
+
 import AttachmentIcon from '@mui/icons-material/Attachment'
 import GroupIcon from '@mui/icons-material/Group'
 import ModeCommentIcon from '@mui/icons-material/ModeComment'
@@ -36,7 +37,6 @@ function Card({ card }) {
     transition,
     opacity: isDragging ? 0.5 : undefined
   }
-
   return (
     <MuiCard
       ref={setNodeRef}
@@ -47,7 +47,11 @@ function Card({ card }) {
         cursor: 'pointer',
         boxShadow: '0 1px 1px rgba(0,0,0,0.2)',
         overflow: 'unset',
-        display: card.FE_PlaceholderCard ? 'none' : 'block'
+        display: card.FE_PlaceholderCard ? 'none' : 'block',
+        border: '0.5px solid transparent',
+        '&:hover': {
+          borderColor: (theme) => theme.palette.primary.main
+        }
         // height: card.FE_PlaceholderCard ? '0px' : '100%'
       }}
     >
