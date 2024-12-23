@@ -22,7 +22,7 @@ function Auth() {
         minHeight: '100vh',
         alignItems: 'center',
         justifyContent: 'start',
-        backgroundImage: 'url(/src/assets/bg.jpg)',
+        backgroundImage: 'url(https://res.cloudinary.com/dvbosn50d/image/upload/v1734970034/users/xqyxgg7zjcnt4u07uuor.jpg)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
