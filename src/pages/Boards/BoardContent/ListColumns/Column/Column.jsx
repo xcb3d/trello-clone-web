@@ -24,10 +24,17 @@ import TextField from '@mui/material/TextField'
 import CloseIcon from '@mui/icons-material/Close'
 import { toast } from 'react-toastify'
 import { useConfirm } from 'material-ui-confirm'
+import { useSelector, useDispatch } from 'react-redux'
+import { selectCurrentActiveBoard, updateCurrentActiveBoard } from '~/redux/activeBoard/activeBoardSlice'
+import { cloneDeep } from 'lodash'
+import { createNewCardAPI, deleteColumnDetailsAPI, fetchBoardDetailsAPI, updateColumnDetailsAPI } from '~/apis'
+import ToggleFocusInput from '~/components/Form/ToggleFocusInput'
 
-function Column({ column, createNewCard, deleteColumnDetails }) {
+function Column({ column }) {
   const [anchorEl, setAnchorEl] = useState(null)
   const open = Boolean(anchorEl)
+  const board = useSelector(selectCurrentActiveBoard)
+  const dispatch = useDispatch()
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget)
   }
@@ -55,19 +62,37 @@ function Column({ column, createNewCard, deleteColumnDetails }) {
   }
   const [newCardTitle, setNewCardTitle] = useState('')
 
-  const addNewCard = () => {
+  const addNewCard = async() => {
     if (!newCardTitle) {
       toast.error('Please enter card title', {
         position: 'bottom-right'
       })
       return
     }
-
-    //Call API here
-    createNewCard({
+    const newCardData = {
       title: newCardTitle,
       columnId: column._id
+    }
+    //Call API here
+    const createdCard = await createNewCardAPI({
+      ...newCardData,
+      boardId: board._id
     })
+    //Update board
+    const newBoard = cloneDeep(board)
+    const columnToUpdate = newBoard.columns.find(column => column._id === createdCard.columnId)
+    if (columnToUpdate.cards.some(card => card.FE_PlaceholderCard)) {
+      columnToUpdate.cards = [createdCard]
+      columnToUpdate.cardOrderIds = [createdCard._id]
+    } else {
+      columnToUpdate.cards.push(createdCard)
+      columnToUpdate.cardOrderIds.push(createdCard._id)
+    }
+    // console.log(newBoard)
+    // newBoard.columns[1].cards.push(createdCard)
+    // newBoard.columns[1].cardOrderIds.push(createdCard._id)
+    // setBoard(newBoard)
+    dispatch(updateCurrentActiveBoard(newBoard))
     // console.log(newCardTitle)
     toggleOpenNewCardForm()
     setNewCardTitle('')
@@ -82,12 +107,31 @@ function Column({ column, createNewCard, deleteColumnDetails }) {
       confirmationText: 'Delete',
       cancellationText: 'Cancel',
     }).then(() => {
-      deleteColumnDetails(column._id)
-    }).catch(
-      () => { 
+      // deleteColumnDetails(column._id)
+      const newBoard = cloneDeep(board)
+      newBoard.columns = newBoard.columns.filter((c) => c._id !== column._id)
+      newBoard.columnOrderIds = newBoard.columns.map((c) => column._id)
+      // setBoard(newBoard)
+      dispatch(updateCurrentActiveBoard(newBoard))
 
-      }
+      //Call api to update board
+      deleteColumnDetailsAPI(column._id).then(res => {
+        toast.success(res?.deleteResult)
+        // console.log(res)
+      })
+    }).catch(
+      () => {}
     )
+  }
+
+  const onUpdateColumnTitle = (newTitle) => {
+    // console.log('newTitle: ', newTitle)
+    updateColumnDetailsAPI(column._id, { title: newTitle.trim() }).then(() => {
+      const newBoard = cloneDeep(board)
+      const columnToUpdate = newBoard.columns.find(column => column._id === column._id)
+      if (columnToUpdate) columnToUpdate.title = newTitle.trim()
+      dispatch(updateCurrentActiveBoard(newBoard))
+    })
   }
 
   return (
@@ -116,7 +160,12 @@ function Column({ column, createNewCard, deleteColumnDetails }) {
             justifyContent: 'space-between'
           }}
         >
-          <Typography
+          <ToggleFocusInput
+            value={column.title}
+            onChangedValue={onUpdateColumnTitle}
+            data-no-dnd="true"
+          />
+          {/* <Typography
             variant="h6"
             sx={{
               fontSize: '1rem',
@@ -125,7 +174,7 @@ function Column({ column, createNewCard, deleteColumnDetails }) {
             }}
           >
             {column.title}
-          </Typography>
+          </Typography> */}
           <Box>
             <Tooltip title="More">
               <ExpandMoreIcon
@@ -266,6 +315,7 @@ function Column({ column, createNewCard, deleteColumnDetails }) {
                 }}
               >
                 <Button
+                  className='intereptor-loading'
                   variant="contained"
                   color="success"
                   data-no-dnd="true"

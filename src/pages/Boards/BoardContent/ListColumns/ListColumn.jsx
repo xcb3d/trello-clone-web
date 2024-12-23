@@ -9,28 +9,46 @@ import {
 } from '@dnd-kit/sortable'
 import { useState } from 'react'
 import TextField from '@mui/material/TextField'
-import SearchIcon from '@mui/icons-material/Search'
-import InputAdornment from '@mui/material/InputAdornment'
 import CloseIcon from '@mui/icons-material/Close'
+import { createNewColumnAPI } from '~/apis'
+import { generatePlaceholderCard } from '~/utils/formatter'
+import { useSelector, useDispatch } from 'react-redux'
+import { selectCurrentActiveBoard, updateCurrentActiveBoard } from '~/redux/activeBoard/activeBoardSlice'
+import { cloneDeep } from 'lodash'
 
-function ListColumn({ columns, createNewColumn, createNewCard, deleteColumnDetails }) {
+function ListColumn({ columns }) {
   const [openNewColumnForm, setOpenNewColumnForm] = useState(false)
   const toggleOpenNewColumnForm = () => {
     setOpenNewColumnForm(!openNewColumnForm)
   }
   const [newColumnTitle, setNewColumnTitle] = useState('')
+  const board = useSelector(selectCurrentActiveBoard)
+  const dispatch = useDispatch()
 
-  const addNewColumn = () => {
+  const addNewColumn = async () => {
     if (!newColumnTitle) {
       toast.error('Please enter column title')
       return
     }
     //Create data
     const newColumnData = {
-      title: newColumnTitle
+      title: newColumnTitle.trim()
     }
     //Call API here
-    createNewColumn(newColumnData)
+    const createdColumn = await createNewColumnAPI({
+      ...newColumnData,
+      boardId: board._id
+    })
+    createdColumn.cards = [generatePlaceholderCard(createdColumn)]
+    createdColumn.cardOrderIds = [generatePlaceholderCard(createdColumn)._id]
+    // console.log(board)
+
+    //Update board
+    const newBoard = cloneDeep(board)
+    newBoard.columns.push(createdColumn)
+    newBoard.columnOrderIds.push(createdColumn._id)
+    // setBoard(newBoard)
+    dispatch(updateCurrentActiveBoard(newBoard))
 
     toggleOpenNewColumnForm()
     setNewColumnTitle('')
@@ -55,7 +73,7 @@ function ListColumn({ columns, createNewColumn, createNewCard, deleteColumnDetai
         }}
       >
         {columns?.map((column) => (
-          <Column key={column._id} column={column} createNewCard={createNewCard} deleteColumnDetails={deleteColumnDetails}/>
+          <Column key={column._id} column={column}/>
         ))}
 
         {/* Add new column form */}
@@ -126,6 +144,7 @@ function ListColumn({ columns, createNewColumn, createNewCard, deleteColumnDetai
               }}
             >
               <Button
+                className='intereptor-loading'
                 variant="contained"
                 color="success"
                 onClick={addNewColumn}

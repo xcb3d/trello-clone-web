@@ -10,6 +10,8 @@ import CardMedia from '@mui/material/CardMedia'
 import Typography from '@mui/material/Typography'
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
+import { useDispatch } from 'react-redux'
+import { showModalActiveCard, updateCurrentActiveCard } from '~/redux/activeCard/activeCardSlice'
 
 function Card({ card }) {
   const shouldShowCardActions = () => {
@@ -37,8 +39,14 @@ function Card({ card }) {
     transition,
     opacity: isDragging ? 0.5 : undefined
   }
+
+  const dispatch = useDispatch()
   return (
     <MuiCard
+      onClick={() => {
+        dispatch(updateCurrentActiveCard(card))
+        dispatch(showModalActiveCard())
+      }}
       ref={setNodeRef}
       style={dndKitCardStyles}
       {...attributes}

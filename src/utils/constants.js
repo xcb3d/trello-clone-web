@@ -8,3 +8,8 @@ if (process.env.BUILD_MODE === 'production') {
 }
 // export const API_ROOT = 'http://localhost:8017'
 export const API_ROOT = apiRoot
+
+export const CARD_MEMBER_ACTIONS = {
+  REMOVE: 'remove',
+  ADD: 'add'
+}

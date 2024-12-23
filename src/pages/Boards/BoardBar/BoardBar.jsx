@@ -10,6 +10,9 @@ import AvatarGroup from '@mui/material/AvatarGroup'
 import Tooltip from '@mui/material/Tooltip'
 import Button from '@mui/material/Button'
 import PersonAddIcon from '@mui/icons-material/PersonAdd'
+import BoardUserGroup from './BoardUserGroup'
+import { useEffect } from 'react'
+import InviteBoardUser from './InviteBoardUser'
 
 const MENU_STYLE = {
   color: 'white',
@@ -76,73 +79,9 @@ function BoardBar({ board }) {
         />
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-        <Button
-          variant="outlined"
-          startIcon={<PersonAddIcon />}
-          sx={{
-            color: 'white',
-            borderColor: 'white',
-            ':hover': {
-              borderColor: 'white'
-            }
-          }}
-        >
-          Invite
-        </Button>
-        <AvatarGroup
-          max={4}
-          sx={{
-            gap: '10px',
-            '& .MuiAvatar-root': {
-              width: 32,
-              height: 32,
-              fontSize: '1rem',
-              border: 'none',
-              color: 'white',
-              cursor: 'pointer',
-              '&:first-of-type' : {
-                backgroundColor: '#a4b0be'
-              }
-            }
-          }}
-        >
-          <Tooltip title="Profile">
-            <Avatar
-              alt="Remy Sharp"
-              src="https://avatars.githubusercontent.com/u/10214025?v=4"
-            />
-          </Tooltip>
-          <Tooltip title="Profile">
-            <Avatar
-              alt="Remy Sharp"
-              src="https://avatars.githubusercontent.com/u/10214025?v=4"
-            />
-          </Tooltip>
-          <Tooltip title="Profile">
-            <Avatar
-              alt="Remy Sharp"
-              src="https://avatars.githubusercontent.com/u/10214025?v=4"
-            />
-          </Tooltip>
-          <Tooltip title="Profile">
-            <Avatar
-              alt="Remy Sharp"
-              src="https://avatars.githubusercontent.com/u/10214025?v=4"
-            />
-          </Tooltip>
-          <Tooltip title="Profile">
-            <Avatar
-              alt="Remy Sharp"
-              src="https://avatars.githubusercontent.com/u/10214025?v=4"
-            />
-          </Tooltip>
-          <Tooltip title="Profile">
-            <Avatar
-              alt="Remy Sharp"
-              src="https://avatars.githubusercontent.com/u/10214025?v=4"
-            />
-          </Tooltip>
-        </AvatarGroup>
+        <InviteBoardUser boardId={board._id}/>
+
+        <BoardUserGroup boardUsers={board.FE_allUsers}/>
       </Box>
     </Box>
   )
