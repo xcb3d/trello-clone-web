@@ -28,7 +28,7 @@ function LoginForm() {
       dispatch(loginUserAPI({ email, password })),
       { pending: 'Logging in...' }
     ).then(res => {
-      console.log(res)
+      // console.log(res)
       // Đăng nhập thành công thì điều hướng
       if (!res.error) navigate('/')
     })

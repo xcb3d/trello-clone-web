@@ -25,11 +25,11 @@ function AutoCompleteSearchBoard() {
   const handleInputSearchChange = (event) => {
     const searchValue = event?.target.value
     if (!searchValue) return
-    console.log('searchValue: ', searchValue)
+    // console.log('searchValue: ', searchValue)
 
     // Dùng createSearchParams để tạo searchPath chuẩn với q[title] gọi API
     const searchPath = `?${createSearchParams({ 'q[title]': searchValue })}`
-    console.log('searchPath: ', searchPath)
+    // console.log('searchPath: ', searchPath)
 
     setLoading(true)
 

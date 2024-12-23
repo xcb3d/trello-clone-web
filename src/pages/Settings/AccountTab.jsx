@@ -32,7 +32,7 @@ function AccountTab() {
 
   const submitChangeGeneralInfomation = (data) => {
     const { displayName } = data
-    console.log('🚀 ~ submitChangeGeneralInfomation ~ displayName:', displayName)
+    // console.log('🚀 ~ submitChangeGeneralInfomation ~ displayName:', displayName)
     if (displayName === user?.displayName) return
 
     // Gọi API để cập nhật thông tin
@@ -49,7 +49,7 @@ function AccountTab() {
   }
 
   const uploadAvatar = (e) => {
-    console.log('🚀 ~ uploadAvatar ~ e:', e.target?.files[0])
+    // console.log('🚀 ~ uploadAvatar ~ e:', e.target?.files[0])
     const error = singleFileValidator(e.target?.files[0])
     if (error) {
       toast.error(error)
@@ -58,10 +58,10 @@ function AccountTab() {
 
     let reqData = new FormData()
     reqData.append('avatar', e.target?.files[0])
-    console.log('🚀 ~ uploadAvatar ~ reqData:', reqData)
+    // console.log('🚀 ~ uploadAvatar ~ reqData:', reqData)
 
     for (const value of reqData.values()) {
-      console.log('🚀 ~ uploadAvatar ~ value:', value)
+      // console.log('🚀 ~ uploadAvatar ~ value:', value)
     }
     // Gọi API
     toast.promise(

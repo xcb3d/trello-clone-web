@@ -68,7 +68,7 @@ function Notifications() {
 
   const updateBoardInvitation = (status, invitationId) => {
     dispatch(updateBoardInvitationAPI({ status, invitationId })).then((res) => {
-      console.log(res)
+      // console.log(res)
       if (res.payload.boardInvitation.status === BOARD_INVITATION_STATUS.ACCEPTED) {
         navigate(`/boards/${res.payload.boardInvitation.boardId}`)
       }
