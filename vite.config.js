@@ -4,6 +4,10 @@ import svgr from 'vite-plugin-svgr'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: './',
+  server: {
+    historyApiFallback: true
+  },
   define: {
     'process.env': process.env
   },
