@@ -1,55 +1,30 @@
-### Bộ code base để bắt đầu học khóa MERN Stack Pro (HỌC PHẦN FRONT-END: REACTJS - MATERIAL UI - REDUX...vv) - Lập Trình qua dự án thực tế Trello Clone trên YouTube của mình nhé các bạn!
-### Base project for my MERN Stack Pro Course - Build Trello App on YouTube!
+# Về thông tin dự án:
 
-- Playlist hướng dẫn chi tiết từ A-Z: https://www.youtube.com/playlist?list=PLP6tw4Zpj-RJP2-YrhtkWqObMQ-AA4TDy
+- Đây là dự án Trello clone web được được lấy ý tưởng từ ứng dụng [Trello](https://trello.com/) và được sử dụng API của dự án [trello API](https://github.com/xcb3d/trello-api/tree/master)
 
-- Link Download Full Source Code hoàn chỉnh của bộ này và ủng hộ mình (Vui lòng đọc phần mô tả ở bất kỳ video nào trong Playlist MERN Stack để hiểu tại sao có 2 link bên dưới)
+- Dự án được được phát triển dựa trên bộ codebase và sự hướng dẫn tận tình của anh [TrungQuanDev - Một Lập Trình Viên](https://www.youtube.com/@trungquandev)
 
-- 🤝 Get Full Source Code for this Course here and support me 🍀
+# Về tính năng:
 
-- 🎁 on Ko-fi: https://ko-fi.com/s/e41c325ca4
+- Tạo và quản lý bảng để lưu trữ thông tin
 
-- 🎁 on Buy Me a Coffee: https://www.buymeacoffee.com/codetq/e/191152
+- Tạo và quản lý các cột và thẻ bên trong bảng cũng như cho phép người dùng di chuyển vị trí qua lại bằng hành động kéo thả
 
-### Hướng dẫn clone Repo code này về máy các bạn chuẩn nhất ở đây nhé:
+- Dễ dàng chỉnh sửa thông tin trong cột và thẻ để quản lý
 
-- Link: https://youtu.be/lUfsTj45Uys
+- Tính năng mời người dùng khác tham gia bảng thông qua email và có hiển thị thông báo thời gian thực
 
-### Requirements - Thông tin của bộ Code Base này - Chuẩn các phiên bản dưới đây để bắt đầu học: (Semantic Versioning)
+- Các tính năng cập nhật thông tin người dùng
 
-```
-* nodejs = v18.16.0
-* npm = v9.5.1
-* yarn = v1.22.19
 
-* "react": "^18.2.0"
-* "react-dom": "^18.2.0"
-* "@types/react": "^18.0.28"
-* "@types/react-dom": "^18.0.11"
+# Thông tin về mình:
 
-* "vite": "^4.3.2"
-* "@vitejs/plugin-react-swc": "^3.0.0"
+- Tác giả: **Nguyễn Anh Tú**
 
-* "eslint": "^8.38.0"
-* "eslint-plugin-react": "^7.32.2"
-* "eslint-plugin-react-hooks": "^4.6.0"
-* "eslint-plugin-react-refresh": "^0.3.4"
-```
+- Hiện tại mình đang là sinh viên khoá **K19** học tại **đại học FPT**
 
-### About Me - Thông tin về mình:
+- Facebook: https://www.facebook.com/NAT.Null.1701
 
-Author: **Trungquandev - Một Lập Trình Viên** & **CodeTQ**
+- Email: xcode3d@gmail.com
 
-Blog: https://trungquandev.com/
-
-CV: https://cv.trungquandev.com/
-
-YouTube 01 (Trungquandev - Một Lập Trình Viên): https://www.youtube.com/@trungquandev
-
-YouTube 02 (CodeTQ): https://www.youtube.com/@code-tq
-
-"Learning new everyday not the copycat of yesterday!"
-
-"A bit of fragrance clings to the hand that gives flowers!"
-
-Thanks for watching!
+# Cuối cùng xin cảm ơn chân thành tới anh Trung Quân vì 1 khoá học trên cả tuyệt vời ♥️
