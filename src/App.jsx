@@ -22,9 +22,9 @@ function App() {
       path: '/',
       element: <Navigate to="/boards" replace={true} />,
     },
-    {
-      element: <ProtectedRoute user={user} />,
-      children: [
+    // {
+      // element: <ProtectedRoute user={user} />,
+      // children: [
         {
           path: '/settings/account',
           element: <Settings />,
@@ -41,8 +41,8 @@ function App() {
           path: '/boards/:boardId',
           element: <Board />,
         },
-      ],
-    },
+      // ],
+    // },
     {
       path: '/login',
       element: <Auth />,
