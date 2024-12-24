@@ -1,19 +1,10 @@
 {
-  "rewrites": [
+  "routes": [
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "src": "/[^.]+",
+      "dest": "/",
+      "status": 200
     }
   ],
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "application/javascript"
-        }
-      ]
-    }
-  ]
+  "cleanUrls": true
 }
