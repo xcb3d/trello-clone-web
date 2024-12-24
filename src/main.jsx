@@ -18,7 +18,7 @@ import { store } from './redux/store'
 import { Provider } from 'react-redux'
 
 //React router DOM
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 // Cấu hình redux-persist
 import { persistStore } from 'redux-persist'
@@ -27,26 +27,33 @@ const persistor = persistStore(store)
 
 // Kỹ thuật inject store
 import { injectStore } from './utils/authorizeAxios.js'
+import Settings from './pages/Settings/Settings.jsx'
+import NotFound from './pages/404/NotFound.jsx'
 injectStore(store)
 
-
+const router = createBrowserRouter([
+  {
+    path: '/settings/security',
+    element: <NotFound />,
+  },
+]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>
-  <Provider store={store}>
-    <PersistGate persistor={persistor}>
-      {/* <BrowserRouter basename='/'> */}
-        <CssVarsProvider theme={theme}>
-          <ConfirmProvider>
-            <CssBaseline />
-            <App />
-            {/* <RouterProvider router={router} /> */}
+  // <Provider store={store}>
+    // <PersistGate persistor={persistor}>
+      // {/* <BrowserRouter basename='/'> */}
+        // <CssVarsProvider theme={theme}>
+          // <ConfirmProvider>
+            // <CssBaseline />
+            // <App />
+            <RouterProvider router={router} />
 
-            <ToastContainer position='bottom-left' theme='colored' />
-          </ConfirmProvider>
-        </CssVarsProvider>
-      {/* </BrowserRouter> */}
-    </PersistGate>
-  </Provider>
+            // <ToastContainer position='bottom-left' theme='colored' />
+          // </ConfirmProvider>
+        // </CssVarsProvider>
+      // {/* </BrowserRouter> */}
+    // </PersistGate>
+  // </Provider>
   // </React.StrictMode>
 )
