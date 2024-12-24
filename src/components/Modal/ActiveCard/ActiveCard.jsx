@@ -139,7 +139,7 @@ function ActiveCard() {
         outline: 0,
         padding: '40px 20px 30px',
         margin: '50px auto',
-        backgroundColor: ( theme) => theme.palette.mode === ' dark' ? ' #1A2027' : ' white'
+        backgroundColor: (theme) => theme.palette.mode === 'dark' ? ' #1A2027' : ' white'
       }}>
         <Box sx={{
           position: 'absolute',
