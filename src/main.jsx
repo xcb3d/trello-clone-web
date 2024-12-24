@@ -40,20 +40,18 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>
-  // <Provider store={store}>
-    // <PersistGate persistor={persistor}>
-      // {/* <BrowserRouter basename='/'> */}
-        // <CssVarsProvider theme={theme}>
-          // <ConfirmProvider>
-            // <CssBaseline />
-            // <App />
-            <RouterProvider router={router} />
-
-            // <ToastContainer position='bottom-left' theme='colored' />
-          // </ConfirmProvider>
-        // </CssVarsProvider>
-      // {/* </BrowserRouter> */}
-    // </PersistGate>
-  // </Provider>
+  <Provider store={store}>
+    <PersistGate persistor={persistor}>
+      <BrowserRouter basename='/'>
+        <CssVarsProvider theme={theme}>
+          <ConfirmProvider>
+            <CssBaseline />
+            <App />
+            <ToastContainer position='bottom-left' theme='colored' />
+          </ConfirmProvider>
+        </CssVarsProvider>
+      </BrowserRouter>
+    </PersistGate>
+  </Provider>
   // </React.StrictMode>
 )

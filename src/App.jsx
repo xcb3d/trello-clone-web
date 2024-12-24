@@ -17,72 +17,28 @@ export const ProtectedRoute = ({ user }) => {
 
 function App() {
   const user = useSelector(selectCurrentUser)
-  const router = createBrowserRouter([
-    {
-      path: '/',
-      element: <Navigate to="/boards" replace={true} />,
-    },
-    {
-      element: <ProtectedRoute user={user} />,
-      children: [
-        {
-          path: '/settings/account',
-          element: <Settings />,
-        },
-        {
-          path: '/settings/security',
-          element: <Settings />,
-        },
-        {
-          path: '/boards',
-          element: <Boards />,
-        },
-        {
-          path: '/boards/:boardId',
-          element: <Board />,
-        },
-      ],
-    },
-    {
-      path: '/login',
-      element: <Auth />,
-    },
-    {
-      path: '/register',
-      element: <Auth />,
-    },
-    {
-      path: '/account/verification',
-      element: <AccountVerification />,
-    },
-    {
-      path: '*',
-      element: <NotFound />,
-    },
-  ]);
   
 
   return (
-  <RouterProvider router={router} />
-    // <Routes>
-    //   <Route path='/' element={
-    //     <Navigate to="/boards" replace={true} />
-    //   }>
-    //   </Route>
-    //   <Route element={<ProtectedRoute user={user} />}>
-    //     {/* <Outlet /> của react-router-dom sẽ chạy vào các child route trong này*/}
-    //     {/* User settings */}
-    //     <Route path="/settings/account" element={<Settings />} />
-    //     <Route path="/settings/security" element={<Settings />} />
-    //     {/* Boards */}
-    //     <Route path="/boards" element={<Boards />} />
-    //     <Route path="/boards/:boardId" element={<Board />} />
-    //   </Route>
-    //   <Route path="login" element={<Auth />} />
-    //   <Route path="register" element={<Auth />} />
-    //   <Route path="account/verification" element={<AccountVerification />} />
-    //   <Route path="*" element={<NotFound />} />
-    // </Routes>
+    <Routes>
+      <Route path='/' element={
+        <Navigate to="/boards" replace={true} />
+      }>
+      </Route>
+      <Route element={<ProtectedRoute user={user} />}>
+        {/* <Outlet /> của react-router-dom sẽ chạy vào các child route trong này*/}
+        {/* User settings */}
+        <Route path="/account" element={<Settings />} />
+        <Route path="/security" element={<Settings />} />
+        {/* Boards */}
+        <Route path="/boards" element={<Boards />} />
+        <Route path="/boards/:boardId" element={<Board />} />
+      </Route>
+      <Route path="/login" element={<Auth />} />
+      <Route path="/register" element={<Auth />} />
+      <Route path="/verification" element={<AccountVerification />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   )
 }
 
