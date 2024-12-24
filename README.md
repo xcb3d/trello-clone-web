@@ -16,6 +16,7 @@
 
 - Các tính năng cập nhật thông tin người dùng
 
+- Dự án vẫn tiếp tục cập nhật những tính năng mới
 
 # Thông tin về mình:
 
