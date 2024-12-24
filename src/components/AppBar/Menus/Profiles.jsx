@@ -66,7 +66,7 @@ function Profiles() {
         onClick={handleClose}
         TransitionComponent={Fade}
       >
-        <Link to="/settings/account">
+        <Link to="/account">
           <MenuItem sx={{
             '&:hover' : {
               color: 'success.light'

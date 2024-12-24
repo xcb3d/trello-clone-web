@@ -32,8 +32,8 @@ function Settings() {
       <TabContext value={activeTab}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <TabList onChange={handleChangeTab}>
-            <Tab label="Account" value={TABS.ACCOUNT} icon={<PersonIcon />} component={Link} to="/settings/account"/>
-            <Tab label="Security" value={TABS.SECURITY} icon={<SecurityIcon />} component={Link} to="/settings/security"/>
+            <Tab label="Account" value={TABS.ACCOUNT} icon={<PersonIcon />} component={Link} to="/account"/>
+            <Tab label="Security" value={TABS.SECURITY} icon={<SecurityIcon />} component={Link} to="/security"/>
           </TabList>
         </Box>
         <TabPanel value={TABS.ACCOUNT}><AccountTab /></TabPanel>
