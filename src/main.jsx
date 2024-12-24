@@ -30,19 +30,22 @@ import { injectStore } from './utils/authorizeAxios.js'
 injectStore(store)
 
 
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>
   <Provider store={store}>
     <PersistGate persistor={persistor}>
-      <BrowserRouter basename='/'>
+      {/* <BrowserRouter basename='/'> */}
         <CssVarsProvider theme={theme}>
           <ConfirmProvider>
             <CssBaseline />
             <App />
+            {/* <RouterProvider router={router} /> */}
+
             <ToastContainer position='bottom-left' theme='colored' />
           </ConfirmProvider>
         </CssVarsProvider>
-      </BrowserRouter>
+      {/* </BrowserRouter> */}
     </PersistGate>
   </Provider>
   // </React.StrictMode>
